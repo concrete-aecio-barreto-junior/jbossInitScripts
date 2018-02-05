@@ -5,8 +5,6 @@
 
 Scripts shell for Jboss (ajp/cluster, standalone) maintenance.
 
-Refer to the official [Bash documentation](https://www.gnu.org/software/bash/manual/bashref.html#Bash-Startup-Files) to get more info.
-
 ### [jbossInitScript (cluster)](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/jbossInitScript.cluster.sh)
 
 This script is useful for maintenance (stop / start) of jboss instances from a single node
