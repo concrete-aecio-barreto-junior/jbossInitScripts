@@ -7,6 +7,7 @@
 # Notes       : Nenhuma
 #
 # Versao      : v1.0 - Criado o script
+#               v1.1 - Adicionado funcionalidade "help"
 # 
 # ----------------- Config Vars ------------------ #
 
@@ -99,7 +100,8 @@ _Log(){
    local LogFile=/opt/jboss/standalone/log/server.log
    tail -f $LogFile | awk '/INFO/ {print "\033[32m" $0 "\033[39m"} /ERROR/ {print "\033[31m" $0 "\033[39m"} /WARNING/ {print "\033[33m" $0 "\033[39m" }'
 }
- 
+
+_Help(){ _Usage; }
  
 if [ $# -eq 1 ]
 then
@@ -110,6 +112,7 @@ then
       stop)    { _Stop;        } ;;
       log)     { _Log;         } ;;
       restart) { _Restart;     } ;;
+      help)    { _Help;        } ;;
       *)       { _Usage;       } ;;
    esac
 else

@@ -7,6 +7,7 @@
 # Notes       : Nenhuma
 #
 # Versao      : v1.0 - Criado o script
+#               v1.1 - Adicionado funcionalidade "help"
 # 
 # ----------------- Config Vars ------------------ #
 
@@ -160,6 +161,8 @@ _TraduzNodeName(){
    fi
    echo "${NodeName}"
 }
+
+_Help(){ _Usage;}
  
 # ----------------- begin - Script ------------------ #
  
@@ -180,6 +183,7 @@ then
       stop)    { CMD="_Stop";    } ;;
       log)     { CMD="_Log";     } ;;
       restart) { CMD="_Restart"; } ;;
+      help)    { CMD="_Help";    } ;;
       *)       { echo Use corretamente os params; exit 1; } ;;
    esac
    echo "${NODE}" | while read N
@@ -196,8 +200,9 @@ then
       status)  { _Status;  } ;;
       start)   { _Start;   } ;;
       stop)    { _Stop;    } ;;
-      log)     { _Log;    } ;;
+      log)     { _Log;     } ;;
       restart) { _Restart; } ;;
+      help)    { _Help;    } ;;
       *)       { echo Use corretamente os params; } ;;
    esac
 else
