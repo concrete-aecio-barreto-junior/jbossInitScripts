@@ -3,17 +3,19 @@
 
 ## Description
 
-Scripts para manutenção de instancias jboss standalone e clusters (ajp).
-### jbossInitScript (cluster)
+Scripts shell for Jboss (ajp/cluster, standalone) maintenance.
 
-Este script é útil para manutenção (stop/start) de instâncias jboss a partir de um unico node.
-Necessário relação de confiança (baseada em troca de chaves rsa/dsa) entre os nodes.
+Refer to the official [Bash documentation](https://www.gnu.org/software/bash/manual/bashref.html#Bash-Startup-Files) to get more info.
+
+### [jbossInitScript (cluster)](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/jbossInitScript.cluster.sh)
+
+This script is useful for maintenance (stop / start) of jboss instances from a single node
+Required trust relationship (rsa/dsa key exchange) between nodes.
 
 #### Operation
 
-Este script suporta operações "stop|start|status|restart" em nodes contidos no arquivo "/etc/hosts".
-
-Para execução do comando nos nodes remotos é necessario garantir relação de confiança (troca de chaves RSA/DSA) entre os hosts.
+this script supports "stop | start | status | restart" operations on nodes contained in the "/etc/hosts" file.
+To execute the command on the remote nodes, it is necessary to ensure a trust relationship (RSA/DSA key exchange) between the hosts.
 
 #### Usage
 
@@ -22,24 +24,23 @@ $ sudo /etc/init.d/jboss            {stop|start|status|restart} {all|00}
     .                .                           .                 .
     .                .                           .                 .
     .                .                           .                 ...... Node (Ex. 01 ou all)
-    .                .                           ........................ Operacao
+    .                .                           ........................ Operation
     .                .................................................... Script
-    ..................................................................... Executa como superuser
+    ..................................................................... Run as super user
 
 ```
 
-### jbossInitScript (standalone)
+### [jbossInitScript (standalone)](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/jbossInitScript.standalone.sh)
 
-Script para manutenção de instancia jboss standalone.
+This script is useful for maintenance (stop / start) of standalone instance.
 
 #### Usage
 
 ```
 /etc/init.d/gerenciadorJboss.sh {stop|start|status|restart|log}
- .                .                           .
- .                .                           .
- .                .                           .
- .                .                           ........................ Operacao
- .                .................................................... Script
- ..................................................................... Executa como superuser
+                  .                           .
+                  .                           .
+                  .                           .
+                  .                           ........................ Operation
+                  .................................................... Script
 ```
