@@ -3,12 +3,12 @@
 ---
 ## Description
 
-Scripts para manutenção de instancias jboss standalone e clusters (ajp).
+Scripts para manutenção de instancias jboss **standalone** e **clusters (ajp)**.
 
 ### jbossInitScript (cluster)
 
 Este script é útil para manutenção (stop/start) de instâncias jboss a partir de um unico node.
-Necessário relação de confiança (baseada em troca de chaves rsa/dsa) entre os nodes.
+*Necessário relação de confiança (baseada em troca de chaves rsa/dsa) entre os nodes.*
 
 #### Operation
 
@@ -28,14 +28,15 @@ Para execução do comando nos nodes remotos é necessario garantir relação de
 ```
 $ ssh-keygen -t rsa
 ```
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+![SSH key generation ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/images/ssh-keygen.png "ssh-keygen")
+
 
 * Autorizacão por intercambio da chave pública (origem -> destino)
 
 ```
 $ ssh-copy-id remoteuser@remotehost
 ```
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+![SSH copy id key.pub ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/images/ssh-copy-id.png "ssh-copy-id")
 
 #### Usage
 
@@ -69,72 +70,107 @@ Script para manutenção de instancia jboss standalone.
 
 ## Notes
 
-
-Considerando que a aplicação não tenha sido desenvolvida a garantir devido tratamento do `SIGTERM`[ˆfirst] 15 (software termination signal) ambos scripts `standalone` e `cluster` suportam o argumento `stop` com parada p do appserver de maneira compreensiva.
+Considerando que a aplicação não tenha sido desenvolvida de maneira a garantir o devido tratamento do sinal `SIGTERM, 15`, onde por padrão a aplicação sairia do ar adequadamente, ambos scripts `standalone` e `cluster` suportam o argumento `stop` com parada p do appserver de maneira compreensiva.
 
 + Shutdown (via controller) - falhou?
-  - kill[ˆsecond] `-15` 5x - (falhou)?
-    - kill[ˆsecond] `-9` 8-)
-
-*[controller]: Hyper Text Markup Language
+  - kill `-15` 5x - (falhou)?
+    - kill `-9`
 
 
-1. St: Quando invocado o argumento `stop` incialmente o script tentará parar o appserver através do comando shutdown emitido p/ o controller e aguardará um timeout. Caso não haja eficácia no comando shutdown um segundo artificio (aseguir descrito) será lançado.
-
-2. St: Será emitido o `SIGTERM/15` 5x e aguardará um timeout (tempo regular para encerramento de trheads/conexões). Caso o appserver não trate o sinal 15 segue terceiro e ultimo artificio
-
-3. St. O Jboss será encerrado com o KILL -9
-> __IMPORTANTE__ ==CONSIDERAR TIMEOUTS NECESSARIO e POSSIBILIDDE DE KILL -9==
+1. St: Quando invocado o argumento `stop` incialmente o script tentará parar o appserver através do comando shutdown emitido p/ o controller e aguardará um timeout. Caso não haja eficácia no comando shutdown um segundo artificio (aseguir descrito) será lançado. Segue função comentada:
 
 
 ```bash
 ## Funcao p/ invocar shutdown pelo controller
 _StopDefault(){
-   echo Stopping..
+   # Imprime na output operacao de stop
+   echo Stopping...
+   # Invoca o shutdown ao controller
    /usr/bin/sudo -u jboss $JBOSS_HOME/bin/jboss-cli.sh --connect --controller=127.0.0.1:8888 command=:shutdown
 }
+```
 
+2. St: Será emitido o `SIGTERM/15` 5x e aguardará um timeout (tempo regular para encerramento de trheads/conexões). Caso o appserver não trate o sinal 15 segue terceiro e ultimo artificio. Segue código comentado:
+
+
+```bash
 ## Funcao de controle de Stop
 ### 1st shutdown
 ### 2st kill -15 x5
-### 3st kill -9!
+### 3st kill -9! ~~morte ao jboss~~
 _Stop(){
+   # Instancia variavel de controle de RC
    local RC=0
+   # Intervalo entre tentativas
    TimeWait=30
+   # Invoca stop ao controller (default)
    _StopDefault
+   # Aguarda...
    sleep $TimeWait
+   # Verifica o processo
    local Processo=$( _Status > /dev/null 2>&1; echo $? )
+   # Se o processo persiste...
    if [ $Processo -eq 0 ]; then
+      # Primeira tentativa com kill -15
       _Kill -15 || local RC=$?
    fi
+   # Verifica se o 'kill -15' obteve sucesso
    if [ $RC -ne 0 ]; then
+      # Mais uma vez aguarda...
       sleep $TimeWait
+      # Encerra o processo
      _Kill -9
+     # Atribui sucesso ao RC uma vez que o '-9' eh eficaz
      local RC=0
    fi
-   return $RC
-}
-
-## Funcao p/ submeter o kill
-_Kill(){
-   local Signal=$1
-   local RC=1
-   local Retry=5
-   local Count=1
-   local Processo=$( pgrep java > /dev/null; echo $? )
-   while [ $Processo -eq 0 -a $Count -lt $Retry ]
-   do
-      local PID="$( ps aux | grep -v grep | grep java | awk '{ print $2 }'|tr -s '\n' ' ' )"
-      kill $Signal "$PID"
-      let Count++
-      sleep 10
-      local Processo=$( pgrep java > /dev/null; echo $? )
-   done
-   local Processo=$( pgrep java > /dev/null; echo $? )
-   [[ $Processo -eq 0 ]] || local RC=0
+   # Encerra funcao e retorna o RC
    return $RC
 }
 ```
+
+
+
+3. St. O Jboss será encerrado com o `kill -9`. Segue código comentado:
+> __IMPORTANTE__ ==Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9`==
+
+
+```bash
+## Funcao p/ submeter o kill
+_Kill(){
+   # Signal a ser lançado
+   local Signal=$1
+   # Var p/ controle de return code
+   local RC=1
+   # Tentativas
+   local Retry=5
+   # Contador p/ loop
+   local Count=1
+   # Checa se o processo existe
+   local Processo=$( pgrep java > /dev/null; echo $? )
+   # Laco para enquanto o processo existir
+   while [ $Processo -eq 0 -a $Count -lt $Retry ]
+   do
+      # Obtem PID da JVM
+      local PID="$( ps aux | grep -v grep | grep java | awk '{ print $2 }'|tr -s '\n' ' ' )"
+      # Submete o kill conforme sinal fornecido como argumento
+      kill $Signal "$PID"
+      # incrementa o Contador
+      let Count++
+      # timeout
+      sleep 10
+      # Checa existencia do processo p/ continuidade do laço
+      local Processo=$( pgrep java > /dev/null; echo $? )
+   done
+   # Ultima checagem do processo p/ escalar o RC
+   local Processo=$( pgrep java > /dev/null; echo $? )
+   # Trata o RC
+   [[ $Processo -eq 0 ]] || local RC=0
+   # Retorna o RC
+   return $RC
+}
+```
+
+
 
 ## Links úteis:
 
