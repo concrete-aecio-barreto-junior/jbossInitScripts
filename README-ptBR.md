@@ -28,7 +28,7 @@ Para execução do comando nos nodes remotos é necessario garantir relação de
 ```
 $ ssh-keygen -t rsa
 ```
-![SSH key generation ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/images/ssh-keygen.png "ssh-keygen")
+![SSH key generation ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-keygen.png "ssh-keygen")
 
 
 * Autorizacão por intercambio da chave pública (origem -> destino)
@@ -36,7 +36,7 @@ $ ssh-keygen -t rsa
 ```
 $ ssh-copy-id remoteuser@remotehost
 ```
-![SSH copy id key.pub ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/images/ssh-copy-id.png "ssh-copy-id")
+![SSH copy id key.pub ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-copy-id.png "ssh-copy-id")
 
 #### Usage
 
