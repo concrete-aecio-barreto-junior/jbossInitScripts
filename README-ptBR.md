@@ -66,7 +66,6 @@ Script para manutenção de instancia jboss standalone.
  ..................................................................... Executa como superuser
 ```
 
-
 ## Notas
 
 Considerando que a aplicação não tenha sido desenvolvida de maneira a garantir o devido tratamento do sinal `SIGTERM, 15`, onde por padrão a aplicação sairia do ar adequadamente, ambos scripts `standalone` e `cluster` suportam o argumento `stop` com parada p do appserver de maneira compreensiva.
@@ -76,7 +75,7 @@ Considerando que a aplicação não tenha sido desenvolvida de maneira a garanti
     - kill `-9`
 
 
-1. **st:** Quando invocado o argumento `stop` incialmente o script tentará parar o appserver através do comando shutdown emitido p/ o controller e aguardará um timeout. Caso não haja eficácia no comando shutdown um segundo artificio (aseguir descrito) será lançado. Segue função comentada:
+1. **ST.:** Quando invocado o argumento `stop` incialmente o script tentará parar o appserver através do comando shutdown emitido p/ o controller e aguardará um timeout. Caso não haja eficácia no comando shutdown um segundo artificio (aseguir descrito) será lançado. Segue função comentada:
 
 
 ```bash
@@ -89,7 +88,7 @@ _StopDefault(){
 }
 ```
 
-2. **nd:** Será emitido o `SIGTERM/15` 5x e aguardará um timeout (tempo regular para encerramento de trheads/conexões). Caso o appserver não trate o sinal 15 segue terceiro e ultimo artificio. Segue código comentado:
+2. **ND.:** Será emitido o `SIGTERM/15` 5x e aguardará um timeout (tempo regular para encerramento de trheads/conexões). Caso o appserver não trate o sinal 15 segue terceiro e ultimo artificio. Segue código comentado:
 
 
 ```bash
@@ -127,7 +126,7 @@ _Stop(){
 }
 ```
 
-3. **St.:** O Jboss será encerrado com o `kill -9`. Segue código comentado:
+3. **RD.:** O Jboss será encerrado com o `kill -9`. Segue código comentado:
 > __IMPORTANTE__ Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9` ~~morte do processo~~
 
 
