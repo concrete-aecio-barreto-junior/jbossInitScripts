@@ -1,17 +1,15 @@
 
-# jboss Init Scripts
+# Jboss Init Scripts
 
-## Description
-
-Scripts para manutenção de instancias jboss **standalone** e **clusters (ajp)**.
+Scripts para manutenção de instancias jboss **"standalone"** e **"clusters (ajp)""**.
 
 ### [jbossInitScript (cluster)](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/jbossInitScript.cluster.sh)
 
 Este script é útil para manutenção (stop/start) de instâncias jboss a partir de um unico node.
 
-*Necessário relação de confiança (baseada em troca de chaves rsa/dsa) entre os nodes.*
+###### *Obs.: Necessário relação de confiança (baseada em troca de chaves rsa/dsa) entre os nodes.*
 
-#### Operation
+#### Operação
 
 Este script suporta operações `stop`, `start`, `status`, `restart` em instancias de appserver locais e remotas (contidas no arquivo "/etc/hosts").
 
@@ -39,7 +37,7 @@ $ ssh-copy-id remoteuser@remotehost
 ```
 ![SSH copy id key.pub ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-copy-id.png "ssh-copy-id")
 
-#### Usage
+#### Uso
 
 ```
 $ sudo /etc/init.d/jboss            {stop|start|status|restart} {all|00}
@@ -56,7 +54,7 @@ $ sudo /etc/init.d/jboss            {stop|start|status|restart} {all|00}
 
 Script para manutenção de instancia jboss standalone.
 
-#### Usage
+#### Uso
 
 ```
 /etc/init.d/gerenciadorJboss.sh {stop|start|status|restart|log}
@@ -69,7 +67,7 @@ Script para manutenção de instancia jboss standalone.
 ```
 
 
-## Notes
+## Notas
 
 Considerando que a aplicação não tenha sido desenvolvida de maneira a garantir o devido tratamento do sinal `SIGTERM, 15`, onde por padrão a aplicação sairia do ar adequadamente, ambos scripts `standalone` e `cluster` suportam o argumento `stop` com parada p do appserver de maneira compreensiva.
 
