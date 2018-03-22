@@ -36,7 +36,7 @@ $ ssh-keygen -t rsa
 ```
 $ ssh-copy-id remoteuser@remotehost
 ```
-![SSH copy id key.pub ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-copy-id.png "ssh-copy-id")
+![SSH copy id key.pub ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-copy-id.png =598x343 "ssh-copy-id")
 
 #### Usage
 
@@ -131,7 +131,7 @@ _Stop(){
 
 
 3. St. O Jboss será encerrado com o `kill -9`. Segue código comentado:
-> __IMPORTANTE__ ==Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9`==
+> __IMPORTANTE__ Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9`
 
 
 ```bash
