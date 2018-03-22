@@ -169,15 +169,11 @@ _Kill(){
 }
 ```
 
-
-
 ## Links úteis:
 
-| Plugin | README |
+| Descrição | Links |
 | ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| Github | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
+| GNU Bash | [https://www.gnu.org/software/bash/](https://www.gnu.org/software/bash/) |
+| Jboss | [http://www.jboss.org/](http://www.jboss.org/) |
+| Markdown Tutorial | [https://www.markdowntutorial.com/](https://www.markdowntutorial.com/) |
+| Documentação completa | [https://daringfireball.net/projects/markdown/](https://daringfireball.net/projects/markdown/) |
