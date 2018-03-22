@@ -76,7 +76,7 @@ Considerando que a aplicação não tenha sido desenvolvida de maneira a garanti
     - kill `-9`
 
 
-1. St: Quando invocado o argumento `stop` incialmente o script tentará parar o appserver através do comando shutdown emitido p/ o controller e aguardará um timeout. Caso não haja eficácia no comando shutdown um segundo artificio (aseguir descrito) será lançado. Segue função comentada:
+1. **st:** Quando invocado o argumento `stop` incialmente o script tentará parar o appserver através do comando shutdown emitido p/ o controller e aguardará um timeout. Caso não haja eficácia no comando shutdown um segundo artificio (aseguir descrito) será lançado. Segue função comentada:
 
 
 ```bash
@@ -89,7 +89,7 @@ _StopDefault(){
 }
 ```
 
-2. St: Será emitido o `SIGTERM/15` 5x e aguardará um timeout (tempo regular para encerramento de trheads/conexões). Caso o appserver não trate o sinal 15 segue terceiro e ultimo artificio. Segue código comentado:
+2. **nd:** Será emitido o `SIGTERM/15` 5x e aguardará um timeout (tempo regular para encerramento de trheads/conexões). Caso o appserver não trate o sinal 15 segue terceiro e ultimo artificio. Segue código comentado:
 
 
 ```bash
@@ -127,9 +127,7 @@ _Stop(){
 }
 ```
 
-
-
-3. St. O Jboss será encerrado com o `kill -9`. Segue código comentado:
+3. **St.:** O Jboss será encerrado com o `kill -9`. Segue código comentado:
 > __IMPORTANTE__ Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9`
 
 
@@ -171,9 +169,10 @@ _Kill(){
 
 ## Links úteis:
 
-| Descrição | Links |
+| Descrição | Link |
 | ------ | ------ |
 | GNU Bash | [https://www.gnu.org/software/bash/](https://www.gnu.org/software/bash/) |
 | Jboss | [http://www.jboss.org/](http://www.jboss.org/) |
 | Markdown Tutorial | [https://www.markdowntutorial.com/](https://www.markdowntutorial.com/) |
 | Documentação completa | [https://daringfireball.net/projects/markdown/](https://daringfireball.net/projects/markdown/) |
+| Kill command | [http://linuxcommand.org/lc3_man_pages/kill1.html](http://linuxcommand.org/lc3_man_pages/kill1.html) |
