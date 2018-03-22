@@ -36,7 +36,7 @@ $ ssh-keygen -t rsa
 ```
 $ ssh-copy-id remoteuser@remotehost
 ```
-![SSH copy id key.pub ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-copy-id.png width=598 height=343 "ssh-copy-id")
+![SSH copy id key.pub ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-copy-id.png "ssh-copy-id")
 
 #### Usage
 
