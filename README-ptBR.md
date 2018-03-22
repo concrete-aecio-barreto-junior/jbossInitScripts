@@ -22,7 +22,7 @@ Para execução do comando nos nodes remotos é necessario garantir relação de
 ```
 $ ssh-keygen -t rsa
 ```
-![SSH key generation ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-keygen.png?raw=true)
+![SSH key generation | 512x397, 20%](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-keygen.png?raw=true)
 
 
 * Autorizacão por intercambio da chave pública (origem -> destino)
