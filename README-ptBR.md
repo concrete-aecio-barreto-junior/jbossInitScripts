@@ -128,7 +128,7 @@ _Stop(){
 ```
 
 3. **St.:** O Jboss será encerrado com o `kill -9`. Segue código comentado:
-> __IMPORTANTE__ Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9`
+> __IMPORTANTE__ Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9` ~~morte do processo~~
 
 
 ```bash
