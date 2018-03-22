@@ -1,7 +1,7 @@
 
 # Jboss Init Scripts
 
-Scripts para manutenção de instancias jboss **"standalone"** e **"clusters (ajp)""**.
+Scripts para manutenção de instancias jboss **"standalone"** e **"clusters (ajp)"**.
 
 ### [jbossInitScript (cluster)](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/jbossInitScript.cluster.sh)
 
