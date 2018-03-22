@@ -13,11 +13,6 @@ Este script é útil para manutenção (stop/start) de instâncias jboss a parti
 
 Este script suporta operações `stop`, `start`, `status`, `restart` em instancias de appserver locais e remotas (contidas no arquivo "/etc/hosts").
 
-- __[User management](https://nodeca.github.io/pica/demo/) - Gerenciamento de usuarios__
-- __[SSH access control](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys) - Controle de acesso SSH__
-- __[sudoers](https://www.sudo.ws/) - Proteção SUDO__
-
-
 #### Requerimentos
 
 Para execução do comando nos nodes remotos é necessario garantir relação de confiança (troca de chaves RSA/DSA) entre os hosts. Seguem procedimentos:
@@ -27,7 +22,7 @@ Para execução do comando nos nodes remotos é necessario garantir relação de
 ```
 $ ssh-keygen -t rsa
 ```
-![SSH key generation ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-keygen.png "ssh-keygen")
+![SSH key generation ](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/ssh-keygen.png?raw=true)
 
 
 * Autorizacão por intercambio da chave pública (origem -> destino)
