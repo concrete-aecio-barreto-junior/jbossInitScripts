@@ -5,9 +5,9 @@ Scripts para manutenção de instancias jboss **"standalone"** e **"clusters (aj
 
 ### [jbossInitScript (cluster)](https://github.com/concrete-aecio-barreto-junior/jbossInitScripts/blob/master/jbossInitScript.cluster.sh)
 
-Este script é útil para manutenção (stop/start) de instâncias jboss a partir de um unico node.
+Este script é útil para manutenção (stop/start) de instâncias [Jboss](http://www.jboss.org/) a partir de um unico node.
 
-###### *Obs.: Necessário relação de confiança (baseada em troca de chaves rsa/dsa) entre os nodes.*
+> **Obs.:** *Necessário relação de confiança (baseada em troca de chaves rsa/dsa) entre os nodes.*
 
 #### Operação
 
@@ -66,11 +66,11 @@ Script para manutenção de instancia jboss standalone.
 Considerando que a aplicação não tenha sido desenvolvida de maneira a garantir o devido tratamento do sinal `SIGTERM, 15`, onde por padrão a aplicação sairia do ar adequadamente, ambos scripts `standalone` e `cluster` suportam o argumento `stop` com parada p do appserver de maneira compreensiva.
 
 + Shutdown (via controller) - falhou?
-  - kill `-15` 5x - (falhou)?
-    - kill `-9`
+  - [kill](http://linuxcommand.org/lc3_man_pages/kill1.html) `-15` 5x - (falhou)?
+    - [kill](http://linuxcommand.org/lc3_man_pages/kill1.html) `-9`
 
 
-1. **ST.:** Quando invocado o argumento `stop` incialmente o script tentará parar o appserver através do comando shutdown emitido p/ o controller e aguardará um timeout. Caso não haja eficácia no comando shutdown um segundo artificio (aseguir descrito) será lançado. Segue função comentada:
+1. **St.:** Quando invocado o argumento `stop` incialmente o script tentará parar o appserver através do comando shutdown emitido p/ o controller e aguardará um timeout. Caso não haja eficácia no comando shutdown um segundo artificio (aseguir descrito) será lançado. Segue função comentada:
 
 
 ```bash
@@ -83,7 +83,7 @@ _StopDefault(){
 }
 ```
 
-2. **ND.:** Será emitido o `SIGTERM/15` 5x e aguardará um timeout (tempo regular para encerramento de trheads/conexões). Caso o appserver não trate o sinal 15 segue terceiro e ultimo artificio. Segue código comentado:
+2. **Nd.:** Será emitido o `SIGTERM/15` 5x e aguardará um timeout (tempo regular para encerramento de trheads/conexões). Caso o appserver não trate o sinal 15 segue terceiro e ultimo artificio. Segue código comentado:
 
 
 ```bash
@@ -121,8 +121,8 @@ _Stop(){
 }
 ```
 
-3. **RD.:** O Jboss será encerrado com o `kill -9`. Segue código comentado:
-> __IMPORTANTE__ Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9` ~~morte do processo~~
+3. **Rd.:** O Jboss será encerrado com o `kill -9`. Segue código comentado:
+> **IMPORTANTE:** Considerar duração do timeout conforme necessidade e riscos de encerrar o Jboss com o `kill -9` ~~morte do processo~~
 
 
 ```bash
